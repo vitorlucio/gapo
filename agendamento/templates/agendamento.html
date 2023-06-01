@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'plataforma/css/home.css' %}">
+{% endblock  %}
+
+{% block 'body' %}
+<br>
+<h3 style="display: flex;width: 100%;justify-content: center;"> Agendamento Psicológico</h3>
+<form action="{% url 'agendamento' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <br>
+        <h4 style="display: flex;width: 100%;justify-content: center;">Informe seus dados</h4>
+        <br>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div style="display: flex;width: 100%;justify-content: center;" class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    <form>    
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <input class="form-control form-control-lg" type="text" name="nome" class="form-control" placeholder="Nome:">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <input class="form-control form-control-lg" type="email" name="email" class="form-control" placeholder="E-mail:">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <input class="form-control form-control-lg" type="tel" name="telefone" class="form-control" placeholder="Número whatsapp">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6 offset-md-3">
+                <textarea class="form-control form-control-lg" name="descricao" class="form-control" placeholder="Resuma o motivo do agendamento"></textarea>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="col-md-6 offset-md-5">
+                <input type="submit" value="CADASTRAR" class="btn_agendar">
+            </div>
+        </div>
+        
+    </form>
+{% endblock %}
