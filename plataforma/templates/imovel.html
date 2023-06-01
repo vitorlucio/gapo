@@ -12,9 +12,9 @@
         <br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                {% for img in imovel.imagens.all  %}
+                {% for img in evento.imagens.all  %}
                     <div class="carousel-item {% if forloop.first %} active {% endif %}" >
-                        <img class="d-block w-100" src="{{img}}" alt="First slide">
+                        <img height="20%" class="d-block w-100" src="{{img}}" alt="First slide">
                     </div>
                 {% endfor %}
                 
@@ -32,21 +32,15 @@
 
         <div class="row">
             <div class="col-md">
-                <h3 class="titulo_especificacao">Valor</h3>
-                <p class="especificacao">R$ {{imovel.valor}}</p>
+                <h3 class="titulo_especificacao">Nome</h3>
+                <p class="especificacao">{{evento.nome}}</p>
 
             </div>
 
             <div class="col-md">
-                <h3 class="titulo_especificacao">Quartos</h3>
-                <p class="especificacao">{{imovel.quartos}} Quartos</p>
+                <h3 class="titulo_especificacao">Data</h3>
+                <p class="especificacao">{{evento.data}}</p>
             </div>
-
-            <div class="col-md">
-                <h3 class="titulo_especificacao">Tamanho</h3>
-                <p class="especificacao">{{imovel.tamanho}}m²</p>
-            </div>
-
             
 
         </div>
@@ -54,16 +48,15 @@
         <br>
         <div style="text-align: left">
             <h3 class="titulo_especificacao">Endereço</h3>
-            <p class="especificacao_endereco">{{imovel.rua}}, {{imovel.cidade }}</p>
+            <p class="especificacao_endereco">{{evento.endereco}}</p>
         </div>
 
         <br>
         <div style="text-align: left">
             <h3 class="titulo_especificacao">descricao</h3>
-            <p class="especificacao_endereco">{{imovel.descricao}}</p>
+            <p class="especificacao_endereco">{{evento.descricao}}</p>
             <br>
-            <button class="btn_agendar_visita" data-toggle="modal" data-target="#exampleModal">AGENDAR VISITA</button>
-            <br>
+
             <br>
         </div>
 
@@ -78,10 +71,9 @@
                         <div class="card_imovel">
                             <img class="img_capa_imovel" src="{{sugestao.imagens.all.0.img.url}}">
                             <div class="informacoes_imoveis">
-                            <a class="a_none" href="{% url 'imovel' sugestao.id %}"><h4 class="valor">R$ {{sugestao.valor}}</h4></a>
-                            <p>{{sugestao.rua}}, {{sugestao.cidade}}</p>
+                            <a  class="a_none" href="{% url 'evento' sugestao.id %}"><h4 class="valor">{{sugestao.nome}}</h4></a>
+                            <p>{{sugestao.rua}} {{sugestao.cidade}}</p>
                             <br>
-                            <img width="7%" src="{% static 'plataforma/img/heart.png' %}">
                             </div>
                         
                         </div>

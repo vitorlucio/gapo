@@ -7,8 +7,12 @@
 
 {% block 'body' %}
 <br>
-<h3 style="display: flex;width: 100%;justify-content: center;"> Agendamento Psicológico</h3>
-<form action="{% url 'agendamento' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+<br>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="blue-background col-md-10 " >
+    <br>
+    <h3 style="display: flex;width: 100%;justify-content: center;"> Agendamento Psicológico</h3>
+    <form action="{% url 'agendamento' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
     <br>
         <h4 style="display: flex;width: 100%;justify-content: center;">Informe seus dados</h4>
         <br>
@@ -43,11 +47,24 @@
             </div>
         </div>
         <br>
-        <div class="form-group">
-            <div class="col-md-6 offset-md-5">
-                <input type="submit" value="CADASTRAR" class="btn_agendar">
-            </div>
+        <div class="button_div">
+            <div class="form-group">
+                <div class="col-md-9">
+                    <input type="submit" value="CADASTRAR" class="btn_agendar" >
+                </div>
+            </div> 
         </div>
+               
         
     </form>
+    </div>
+</div>
+
+<style>
+    .blue-background {
+        background-color: #D5E1F4;
+        width: 100%;
+        min-height: 510px;
+    }
+</style>
 {% endblock %}

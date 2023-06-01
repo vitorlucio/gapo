@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Imovei, Cidade
+from .models import Imovei, Cidade, Eventos
 from django.shortcuts import get_object_or_404
 
 
@@ -10,6 +10,7 @@ def home(request):
     cidade = request.GET.get('cidade')
     tipo = request.GET.getlist('tipo')
     cidades = Cidade.objects.all()
+    eventos = Eventos.objects.all()
     if preco_minimo or preco_maximo or cidade or tipo:
         
         if not preco_minimo:
@@ -26,9 +27,10 @@ def home(request):
     else:
         imoveis = Imovei.objects.all()
     
-    return render(request, 'home.html', {'imoveis': imoveis, 'cidades': cidades})
+    return render(request, 'home.html', {'imoveis': imoveis, 'cidades': cidades, 'eventos': eventos})
 
-def imovel(request, id):
-    imovel = get_object_or_404(Imovei, id=id)
-    sugestoes = Imovei.objects.filter(cidade=imovel.cidade).exclude(id=id)[:2]
-    return render(request, 'imovel.html', {'imovel': imovel, 'sugestoes': sugestoes, 'id': id})
+def evento(request, id):
+    #imovel = get_object_or_404(Imovei, id=id)
+    evento = get_object_or_404(Eventos, id=id)
+    sugestoes = Eventos.objects.exclude(id=id)[:2]
+    return render(request, 'imovel.html', {'sugestoes': sugestoes, 'id': id, 'evento': evento})
